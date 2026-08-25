@@ -76,3 +76,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Integrate Gemini API for data extraction -->
 
 <!-- Build triage report component -->
+
+<!-- Add symptom pill mapping -->
