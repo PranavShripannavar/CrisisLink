@@ -44,3 +44,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 - **Dynamically resolves the correct local emergency number** (e.g. 911, 112, 100) based on where the victim actually is â€” no hardcoded country logic
 
 ### ðŸ“£ Automated Volunteer Dispatch
+- The moment triage data is parsed, CrisisLink **automatically emails registered volunteer responders** with the full structured alert
+- The UI reflects this live with a "Pinging Local Volunteers..." status, so the user knows help is already on the way
+
