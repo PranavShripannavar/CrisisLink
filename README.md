@@ -98,3 +98,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 | Deployment | Vercel |
 
 ---
+
+## ðŸš€ Getting Started
+
