@@ -78,3 +78,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Build triage report component -->
 
 <!-- Add symptom pill mapping -->
+
+<!-- Implement dispatch volunteer button -->
