@@ -125,3 +125,5 @@ Open [http://localhost:3000](http://localhost:3000) and grant microphone + locat
 
 - **No language barrier** â€” victims communicate in their own words, in their own language
 - **No app install, no account** â€” open a browser, speak or type
+- **Volunteers respond faster** â€” structured alerts land in inboxes within seconds of the message being sent
+- **Works in the worst conditions** â€” built for panic, not for perfect input
