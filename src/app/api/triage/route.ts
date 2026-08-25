@@ -66,14 +66,16 @@ export async function POST(request: Request) {
     // ==========================================
     try {
         const { Caspian } = await import('caspian-sdk');
-        const cx = new Caspian();
+        const cx: any = new Caspian();
         
         // Ensure the email channel is registered for outboxing
         // This requires CASPIAN_API_KEY in your Vercel env variables eventually
-        await cx.channels.add("email", { 
-            via: "hosted", 
-            apiKey: process.env.CASPIAN_API_KEY || "dummy-key" 
-        });
+        if (cx.channels) {
+            await cx.channels.add("email", { 
+                via: "hosted", 
+                apiKey: process.env.CASPIAN_API_KEY || "dummy-key" 
+            });
+        }
 
         // Format the email body
         const emailBody = `
