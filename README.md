@@ -66,3 +66,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Setup Next.js app router -->
 
 <!-- Install Tailwind CSS and Lucide React -->
+
+<!-- Create base UI layout for dashboard -->
