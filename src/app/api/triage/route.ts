@@ -13,9 +13,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Text input is required' }, { status: 400 });
     }
 
-    // We use gemini-2.5-flash as it's fast and perfect for quick data extraction
+    // We use gemini-3.6-flash as it's fast and perfect for quick data extraction
     const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: 'gemini-3.6-flash',
         contents: `You are an expert emergency medical dispatcher assistant. 
         Your job is to analyze incoming distress messages, translate them to English if necessary, 
         and extract key triage information. Analyze the following text: "${text}"`,
