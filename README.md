@@ -29,3 +29,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 - Accepts **text in any language** â€” no translation step required from the user
 - Accepts **live microphone audio**, recorded in-browser and sent straight to the AI
 - Outputs a strict, structured JSON triage record every time:
+
+| Field | Description |
+|---|---|
