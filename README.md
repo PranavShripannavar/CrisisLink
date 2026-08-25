@@ -1,31 +1,31 @@
-﻿# ðŸ†˜ CrisisLink
+# 🆘 CrisisLink
 
 **AI-Powered Emergency Triage & Volunteer Dispatch System**
 
-CrisisLink bridges the communication gap in emergencies. A victim in distress â€” speaking any language, in any panic-driven, broken message â€” can reach out by text or voice, and CrisisLink instantly translates it, extracts life-critical details, and alerts nearby volunteer responders. No forms. No delays. No language barrier.
+CrisisLink bridges the communication gap in emergencies. A victim in distress — speaking any language, in any panic-driven, broken message — can reach out by text or voice, and CrisisLink instantly translates it, extracts life-critical details, and alerts nearby volunteer responders. No forms. No delays. No language barrier.
 
 ---
 
-## ðŸš¨ The Problem
+## 🚨 The Problem
 
-When something goes wrong, people don't call in perfect sentences. They're panicked, injured, speaking a local dialect, or too hurt to type clearly. Emergency systems built around rigid forms and English-only hotlines lose critical seconds â€” and in an emergency, seconds save lives.
+When something goes wrong, people don't call in perfect sentences. They're panicked, injured, speaking a local dialect, or too hurt to type clearly. Emergency systems built around rigid forms and English-only hotlines lose critical seconds — and in an emergency, seconds save lives.
 
-## ðŸ’¡ The Solution
+## 💡 The Solution
 
-CrisisLink lets anyone send a raw distress message â€” typed in any language, or spoken into their microphone â€” and an AI triage engine does the rest:
+CrisisLink lets anyone send a raw distress message — typed in any language, or spoken into their microphone — and an AI triage engine does the rest:
 
 1. **Understands** the message (any language, text or audio)
 2. **Extracts** what matters: severity, symptoms, location, a clear summary
 3. **Locates** the victim via GPS + reverse geocoding
 4. **Escalates** with the correct local emergency number
-5. **Dispatches** volunteer responders automatically via email â€” in seconds
+5. **Dispatches** volunteer responders automatically via email — in seconds
 
 ---
 
-## âœ¨ Key Features
+## ✨ Key Features
 
-### ðŸŒ Multilingual & Multimodal Triage
-- Accepts **text in any language** â€” no translation step required from the user
+### 🌐 Multilingual & Multimodal Triage
+- Accepts **text in any language** — no translation step required from the user
 - Accepts **live microphone audio**, recorded in-browser and sent straight to the AI
 - Outputs a strict, structured JSON triage record every time:
 
@@ -34,44 +34,44 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 | `severity` | Critical / High / Medium / Low |
 | `location` | Extracted from message, or GPS fallback |
 | `symptoms` | Key injuries / hazards, as a list |
-| `key_details` | 1â€“2 sentence human-readable summary |
+| `key_details` | 1–2 sentence human-readable summary |
 | `translation` | Direct English translation of the message |
 | `emergency_number` | Correct local emergency number for the region |
 
-### ðŸ“ Intelligent Location & Routing
+### 📍 Intelligent Location & Routing
 - Requests GPS access and **reverse-geocodes** coordinates into a readable street address
-- **Dynamically resolves the correct local emergency number** (e.g. 911, 112, 100) based on where the victim actually is â€” no hardcoded country logic
+- **Dynamically resolves the correct local emergency number** (e.g. 911, 112, 100) based on where the victim actually is — no hardcoded country logic
 
-### ðŸ“£ Automated Volunteer Dispatch
+### 📣 Automated Volunteer Dispatch
 - The moment triage data is parsed, CrisisLink **automatically emails registered volunteer responders** with the full structured alert
 - The UI reflects this live with a "Pinging Local Volunteers..." status, so the user knows help is already on the way
 
 ---
 
-## ðŸ—ï¸ How It Works
+## 🏗️ How It Works
 
 ```
- â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
- â”‚   Victim      â”‚  text/  â”‚   Next.js Frontend â”‚  POST   â”‚  /api/triage       â”‚
- â”‚  (browser)    â”‚  audio  â”‚  + GPS capture      â”‚ â”€â”€â”€â”€â”€â”€â–¶ â”‚  (API Route)      â”‚
- â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                                                    â”‚
-                                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                                    â–¼                                                                â–¼
-                         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                         â”‚  Nominatim (OSM)     â”‚                                         â”‚  Google Gemini       â”‚
-                         â”‚  Reverse Geocoding   â”‚                                         â”‚  (text + audio in)   â”‚
-                         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                                                                                        â”‚
+ ┌──────────────┐        ┌────────────────────┐        ┌───────────────────┐
+ │   Victim      │  text/  │   Next.js Frontend │  POST   │  /api/triage       │
+ │  (browser)    │  audio  │  + GPS capture      │ ──────▶ │  (API Route)      │
+ └──────────────┘        └────────────────────┘        └─────────┬─────────┘
+                                                                    │
+                                    ┌───────────────────────────────┼───────────────────────────────┐
+                                    ▼                                                                ▼
+                         ┌─────────────────────┐                                         ┌─────────────────────┐
+                         │  Nominatim (OSM)     │                                         │  Google Gemini       │
+                         │  Reverse Geocoding   │                                         │  (text + audio in)   │
+                         └─────────────────────┘                                         └──────────┬──────────┘
+                                                                                                        │
                                                                                              structured triage JSON
-                                                                                                        â”‚
-                                                                                                        â–¼
-                                                                                            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                                                                                            â”‚   Resend API          â”‚
-                                                                                            â”‚  Volunteer email alert â”‚
-                                                                                            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                                                                                        â”‚
-                                                                                                        â–¼
+                                                                                                        │
+                                                                                                        ▼
+                                                                                            ┌─────────────────────┐
+                                                                                            │   Resend API          │
+                                                                                            │  Volunteer email alert │
+                                                                                            └──────────┬──────────┘
+                                                                                                        │
+                                                                                                        ▼
                                                                                           Triage Dashboard renders
                                                                                           in the victim's browser
 ```
@@ -79,26 +79,26 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 **Step by step:**
 1. The victim types a message or records audio; the browser also fetches GPS coordinates and reverse-geocodes them.
 2. The frontend sends `{ text, audioBase64, mimeType, gpsLocation }` to the `/api/triage` Next.js API route.
-3. The backend prompts Gemini â€” acting as an emergency dispatcher â€” with the text/audio plus the GPS string.
+3. The backend prompts Gemini — acting as an emergency dispatcher — with the text/audio plus the GPS string.
 4. Gemini returns structured triage JSON, which the backend formats into an alert and sends via Resend to volunteer responders.
 5. The same JSON is returned to the frontend, which renders the Triage Dashboard and a one-tap "Escalate" button dialing the correct local emergency number.
 
 ---
 
-## ðŸ› ï¸ Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |---|---|
 | Framework | Next.js (App Router), React, TypeScript |
 | Styling | Tailwind CSS, Lucide React |
-| AI | Google Gemini (`@google/genai` SDK) â€” multilingual, multimodal triage |
-| Email | Resend SDK â€” automated volunteer dispatch |
+| AI | Google Gemini (`@google/genai` SDK) — multilingual, multimodal triage |
+| Email | Resend SDK — automated volunteer dispatch |
 | Location | Browser Geolocation API + Nominatim (OpenStreetMap) reverse geocoding |
 | Deployment | Vercel |
 
 ---
 
-## ðŸš€ Getting Started
+## 🚀 Getting Started
 
 ```bash
 # Clone the repo
@@ -120,9 +120,9 @@ Open [http://localhost:3000](http://localhost:3000) and grant microphone + locat
 
 ---
 
-## ðŸŽ¯ Why It Matters
+## 🎯 Why It Matters
 
-- **No language barrier** â€” victims communicate in their own words, in their own language
-- **No app install, no account** â€” open a browser, speak or type
-- **Volunteers respond faster** â€” structured alerts land in inboxes within seconds of the message being sent
-- **Works in the worst conditions** â€” built for panic, not for perfect input
+- **No language barrier** — victims communicate in their own words, in their own language
+- **No app install, no account** — open a browser, speak or type
+- **Volunteers respond faster** — structured alerts land in inboxes within seconds of the message being sent
+- **Works in the worst conditions** — built for panic, not for perfect input
