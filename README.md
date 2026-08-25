@@ -92,3 +92,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 |---|---|
 | Framework | Next.js (App Router), React, TypeScript |
 | Styling | Tailwind CSS, Lucide React |
+| AI | Google Gemini (`@google/genai` SDK) â€” multilingual, multimodal triage |
+| Email | Resend SDK â€” automated volunteer dispatch |
+| Location | Browser Geolocation API + Nominatim (OpenStreetMap) reverse geocoding |
