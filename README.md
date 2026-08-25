@@ -71,3 +71,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
                                                                                             â”‚   Resend API          â”‚
                                                                                             â”‚  Volunteer email alert â”‚
                                                                                             â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                                                                                        â”‚
+                                                                                                        â–¼
+                                                                                          Triage Dashboard renders
