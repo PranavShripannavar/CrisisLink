@@ -32,3 +32,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 
 | Field | Description |
 |---|---|
+| `severity` | Critical / High / Medium / Low |
+| `location` | Extracted from message, or GPS fallback |
+| `symptoms` | Key injuries / hazards, as a list |
