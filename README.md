@@ -116,3 +116,6 @@ cp .env.example .env.local
 # Run locally
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) and grant microphone + location permissions to try a full triage flow.
+
