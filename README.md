@@ -95,3 +95,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 | AI | Google Gemini (`@google/genai` SDK) â€” multilingual, multimodal triage |
 | Email | Resend SDK â€” automated volunteer dispatch |
 | Location | Browser Geolocation API + Nominatim (OpenStreetMap) reverse geocoding |
+| Deployment | Vercel |
+
+---
