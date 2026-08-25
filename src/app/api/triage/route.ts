@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import { GoogleGenAI, Type, Schema } from '@google/genai';
 
 // Initialize the Gemini API client
-// It automatically picks up the GEMINI_API_KEY environment variable
-const ai = new GoogleGenAI({});
+const apiKey = process.env.GEMINI_API_KEY;
+const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export async function POST(request: Request) {
   try {
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error('Error in triage API:', error);
     return NextResponse.json(
-      { error: 'Failed to process the text. Please check your API key and try again.' },
+      { error: error.message || 'Failed to process the text.' },
       { status: 500 }
     );
   }
