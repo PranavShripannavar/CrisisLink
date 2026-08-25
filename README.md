@@ -104,3 +104,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 ```bash
 # Clone the repo
 git clone https://github.com/PranavShripannavar/crisislink.git
+cd crisislink
+
+# Install dependencies
