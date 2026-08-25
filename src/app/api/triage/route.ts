@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       {
         text: `You are an expert emergency medical dispatcher assistant. 
         Your job is to analyze incoming distress messages (which may be text or audio), translate them to English if necessary, 
-        and extract key triage information. ${gpsLocation ? `\n\nThe user's exact device GPS coordinates are Latitude ${gpsLocation.lat}, Longitude ${gpsLocation.lng}. If the user does not specify a location in their message, use these GPS coordinates as the location.` : ''} 
+        and extract key triage information. ${gpsLocation ? `\n\nThe user's exact device GPS address is: ${gpsLocation}. If the user does not specify a location in their message, use this GPS address as the location, but keep it concise (e.g. just the street and city).` : ''} 
         
         Analyze the following message:`
       }

@@ -13,19 +13,27 @@ export default function Home() {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBase64, setAudioBase64] = useState<string | null>(null);
   const [mimeType, setMimeType] = useState<string | null>(null);
-  const [gpsLocation, setGpsLocation] = useState<{lat: number, lng: number} | null>(null);
+  const [gpsLocation, setGpsLocation] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
 
-  // Request GPS location on load
+  // Request GPS location on load and reverse geocode it
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setGpsLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          try {
+            // Free reverse geocoding API to convert coordinates to a real address
+            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+            const data = await res.json();
+            // Try to get a clean address, fallback to raw coords if it fails
+            const address = data.display_name || `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+            setGpsLocation(address);
+          } catch (e) {
+            setGpsLocation(`Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`);
+          }
         },
         (err) => {
           console.warn("GPS location denied or unavailable:", err);
