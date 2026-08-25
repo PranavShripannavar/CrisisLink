@@ -82,3 +82,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Implement dispatch volunteer button -->
 
 <!-- Implement 911 escalation logic -->
+
+<!-- Add error handling for API route -->
