@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { AlertCircle, MapPin, Activity, ShieldAlert, FileText, Globe, Send, PhoneCall, Mic, Square } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { AlertCircle, MapPin, Activity, ShieldAlert, FileText, Globe, Send, PhoneCall, Mic, Square, CheckCircle2 } from "lucide-react";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -13,8 +13,26 @@ export default function Home() {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBase64, setAudioBase64] = useState<string | null>(null);
   const [mimeType, setMimeType] = useState<string | null>(null);
+  const [gpsLocation, setGpsLocation] = useState<{lat: number, lng: number} | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
+
+  // Request GPS location on load
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setGpsLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+        },
+        (err) => {
+          console.warn("GPS location denied or unavailable:", err);
+        }
+      );
+    }
+  }, []);
 
   const startRecording = async () => {
     try {
@@ -74,7 +92,8 @@ export default function Home() {
         body: JSON.stringify({ 
           text: inputText,
           audioBase64,
-          mimeType 
+          mimeType,
+          gpsLocation 
         }),
       });
 
@@ -125,14 +144,22 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Left Column: Input */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col h-full">
-            <h2 className="text-lg font-semibold mb-4 flex items-center">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col">
+            <h2 className="text-lg font-semibold mb-2 flex items-center">
               <Globe className="h-5 w-5 mr-2 text-blue-600" />
               Incoming Message
             </h2>
-            <p className="text-sm text-gray-500 mb-4">
-              Enter a distressed message in any language. The AI will translate and extract critical triage information.
-            </p>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-gray-500 text-sm">
+                Enter a distressed message in any language, or record audio.
+              </p>
+              {gpsLocation && (
+                <div className="flex items-center text-xs font-medium text-green-700 bg-green-50 px-2 py-1 rounded-full border border-green-200">
+                  <CheckCircle2 className="h-3 w-3 mr-1" />
+                  GPS Acquired
+                </div>
+              )}
+            </div>
             
             <textarea
               className="w-full h-40 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-gray-50/50"
