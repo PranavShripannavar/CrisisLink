@@ -64,3 +64,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Prepare project for Vercel deployment -->
 
 <!-- Setup Next.js app router -->
+
+<!-- Install Tailwind CSS and Lucide React -->
