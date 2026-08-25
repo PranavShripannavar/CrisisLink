@@ -23,3 +23,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 
 ---
 
+## âœ¨ Key Features
+
+### ðŸŒ Multilingual & Multimodal Triage
