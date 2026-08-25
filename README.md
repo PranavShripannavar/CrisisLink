@@ -107,3 +107,6 @@ git clone https://github.com/PranavShripannavar/crisislink.git
 cd crisislink
 
 # Install dependencies
+npm install
+
+# Add environment variables
