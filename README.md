@@ -11,3 +11,6 @@ CrisisLink bridges the communication gap in emergencies. A victim in distress â
 
 When something goes wrong, people don't call in perfect sentences. They're panicked, injured, speaking a local dialect, or too hurt to type clearly. Emergency systems built around rigid forms and English-only hotlines lose critical seconds â€” and in an emergency, seconds save lives.
 
+## ðŸ’¡ The Solution
+
+CrisisLink lets anyone send a raw distress message â€” typed in any language, or spoken into their microphone â€” and an AI triage engine does the rest:
