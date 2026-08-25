@@ -80,3 +80,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Add symptom pill mapping -->
 
 <!-- Implement dispatch volunteer button -->
+
+<!-- Implement 911 escalation logic -->
