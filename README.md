@@ -41,3 +41,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 
 ### ðŸ“ Intelligent Location & Routing
 - Requests GPS access and **reverse-geocodes** coordinates into a readable street address
+- **Dynamically resolves the correct local emergency number** (e.g. 911, 112, 100) based on where the victim actually is â€” no hardcoded country logic
+
+### ðŸ“£ Automated Volunteer Dispatch
