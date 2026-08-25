@@ -62,20 +62,11 @@ export async function POST(request: Request) {
     const parsedData = JSON.parse(resultText);
 
     // ==========================================
-    // CASPIAN SDK INTEGRATION: Dispatch Email
+    // RESEND SDK INTEGRATION: Dispatch Email
     // ==========================================
     try {
-        const { Caspian } = await import('caspian-sdk');
-        const cx: any = new Caspian();
-        
-        // Ensure the email channel is registered for outboxing
-        // This requires CASPIAN_API_KEY in your Vercel env variables eventually
-        if (cx.channels) {
-            await cx.channels.add("email", { 
-                via: "hosted", 
-                apiKey: process.env.CASPIAN_API_KEY || "dummy-key" 
-            });
-        }
+        const { Resend } = await import('resend');
+        const resend = new Resend(process.env.RESEND_API_KEY);
 
         // Format the email body
         const emailBody = `
@@ -91,18 +82,18 @@ Original Translated Text:
 "${parsedData.translation}"
         `;
 
-        // Proactively send a message to the volunteer via Caspian
-        // In Caspian, you typically dispatch to a specific channel address
-        await cx.send({
-            channel: "email",
-            to: "shripannavarpranav@gmail.com", // Your volunteer email
+        // Proactively send a message to the volunteer via Resend
+        await resend.emails.send({
+            from: 'CrisisLink <onboarding@resend.dev>',
+            to: ['shripannavarpranav@gmail.com'], // Your volunteer email
             subject: `[${parsedData.severity.toUpperCase()}] Emergency Alert at ${parsedData.location}`,
             text: emailBody
         });
-        console.log("Caspian SDK: Volunteer email dispatched successfully.");
-    } catch (caspianErr) {
+        
+        console.log("Resend SDK: Volunteer email dispatched successfully.");
+    } catch (emailErr) {
         // We log the error but don't crash the main API response so the UI still works
-        console.error("Failed to send email via Caspian SDK:", caspianErr);
+        console.error("Failed to send email via Resend SDK:", emailErr);
     }
     // ==========================================
 
