@@ -8,3 +8,6 @@ CrisisLink bridges the communication gap in emergencies. A victim in distress â
 ---
 
 ## ðŸš¨ The Problem
+
+When something goes wrong, people don't call in perfect sentences. They're panicked, injured, speaking a local dialect, or too hurt to type clearly. Emergency systems built around rigid forms and English-only hotlines lose critical seconds â€” and in an emergency, seconds save lives.
+
