@@ -47,3 +47,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 - The moment triage data is parsed, CrisisLink **automatically emails registered volunteer responders** with the full structured alert
 - The UI reflects this live with a "Pinging Local Volunteers..." status, so the user knows help is already on the way
 
+---
+
+## ðŸ—ï¸ How It Works
