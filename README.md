@@ -62,3 +62,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Update README with project details -->
 
 <!-- Prepare project for Vercel deployment -->
+
+<!-- Setup Next.js app router -->
