@@ -17,3 +17,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 
 1. **Understands** the message (any language, text or audio)
 2. **Extracts** what matters: severity, symptoms, location, a clear summary
+3. **Locates** the victim via GPS + reverse geocoding
+4. **Escalates** with the correct local emergency number
+5. **Dispatches** volunteer responders automatically via email â€” in seconds
