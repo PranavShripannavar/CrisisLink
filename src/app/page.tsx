@@ -330,7 +330,7 @@ export default function Home() {
                           className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center transition-colors"
                         >
                           <PhoneCall className="h-4 w-4 mr-2" />
-                          Escalate to 911
+                          Escalate to {result.emergency_number || '911'}
                         </button>
                       </div>
                     ) : (

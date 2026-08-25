@@ -46,32 +46,34 @@ export async function POST(request: Request) {
             responseSchema: {
                 type: Type.OBJECT,
                 properties: {
-                    translation: {
-                        type: Type.STRING,
-                        description: "The English translation of the text. If already in English, just return the original text."
-                    },
                     severity: {
                         type: Type.STRING,
-                        description: "The urgency of the situation.",
-                        enum: ["Low", "Medium", "High", "Critical"]
+                        description: "The severity level of the emergency. Must be exactly one of: Critical, High, Medium, Low.",
+                        enum: ["Critical", "High", "Medium", "Low"]
                     },
                     location: {
                         type: Type.STRING,
-                        description: "The location of the emergency. Return 'Unknown' if not specified."
+                        description: "The location of the emergency extracted from the message or GPS."
+                    },
+                    emergency_number: {
+                        type: Type.STRING,
+                        description: "The standard emergency phone number for the identified location (e.g., 911 for US, 112 for EU, 100 or 112 for India)."
                     },
                     symptoms: {
                         type: Type.ARRAY,
-                        items: {
-                            type: Type.STRING
-                        },
-                        description: "A list of reported symptoms or injuries."
+                        items: { type: Type.STRING },
+                        description: "List of key symptoms, injuries, or hazards mentioned."
                     },
                     key_details: {
                         type: Type.STRING,
-                        description: "A brief 1-2 sentence summary of the emergency."
+                        description: "A short, 1-2 sentence summary of what is happening."
+                    },
+                    translation: {
+                        type: Type.STRING,
+                        description: "The direct English translation of the user's message. If it is already in English, return the original message."
                     }
                 },
-                required: ["translation", "severity", "location", "symptoms", "key_details"]
+                required: ["severity", "location", "emergency_number", "symptoms", "key_details", "translation"]
             }
         }
     });
