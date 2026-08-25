@@ -86,3 +86,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 
 ---
 
+## ðŸ› ï¸ Tech Stack
+
+| Layer | Technology |
