@@ -122,3 +122,6 @@ Open [http://localhost:3000](http://localhost:3000) and grant microphone + locat
 ---
 
 ## ðŸŽ¯ Why It Matters
+
+- **No language barrier** â€” victims communicate in their own words, in their own language
+- **No app install, no account** â€” open a browser, speak or type
