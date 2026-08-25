@@ -89,3 +89,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 ## ðŸ› ï¸ Tech Stack
 
 | Layer | Technology |
+|---|---|
+| Framework | Next.js (App Router), React, TypeScript |
+| Styling | Tailwind CSS, Lucide React |
