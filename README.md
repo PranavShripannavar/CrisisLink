@@ -74,3 +74,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
                                                                                                         â”‚
                                                                                                         â–¼
                                                                                           Triage Dashboard renders
+                                                                                          in the victim's browser
+```
+
