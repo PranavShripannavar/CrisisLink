@@ -113,3 +113,6 @@ npm install
 cp .env.example .env.local
 # Fill in your GEMINI_API_KEY and RESEND_API_KEY
 
+# Run locally
+npm run dev
+```
