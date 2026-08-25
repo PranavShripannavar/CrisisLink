@@ -14,3 +14,6 @@ When something goes wrong, people don't call in perfect sentences. They're panic
 ## ðŸ’¡ The Solution
 
 CrisisLink lets anyone send a raw distress message â€” typed in any language, or spoken into their microphone â€” and an AI triage engine does the rest:
+
+1. **Understands** the message (any language, text or audio)
+2. **Extracts** what matters: severity, symptoms, location, a clear summary
