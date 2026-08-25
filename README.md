@@ -80,3 +80,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 **Step by step:**
 1. The victim types a message or records audio; the browser also fetches GPS coordinates and reverse-geocodes them.
 2. The frontend sends `{ text, audioBase64, mimeType, gpsLocation }` to the `/api/triage` Next.js API route.
+3. The backend prompts Gemini â€” acting as an emergency dispatcher â€” with the text/audio plus the GPS string.
+4. Gemini returns structured triage JSON, which the backend formats into an alert and sends via Resend to volunteer responders.
+5. The same JSON is returned to the frontend, which renders the Triage Dashboard and a one-tap "Escalate" button dialing the correct local emergency number.
