@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { AlertCircle, MapPin, Activity, ShieldAlert, FileText, Globe, Send, PhoneCall } from "lucide-react";
+import { useState, useRef } from "react";
+import { AlertCircle, MapPin, Activity, ShieldAlert, FileText, Globe, Send, PhoneCall, Mic, Square } from "lucide-react";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -9,6 +9,53 @@ export default function Home() {
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
   const [dispatchStatus, setDispatchStatus] = useState("");
+
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioBase64, setAudioBase64] = useState<string | null>(null);
+  const [mimeType, setMimeType] = useState<string | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<BlobPart[]>([]);
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      chunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunksRef.current, { type: mediaRecorder.mimeType });
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+          const base64data = (reader.result as string).split(",")[1];
+          setAudioBase64(base64data);
+          setMimeType(mediaRecorder.mimeType);
+          setInputText("🎤 [Audio message recorded]");
+        };
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      mediaRecorder.start();
+      setIsRecording(true);
+      setError("");
+      setResult(null);
+    } catch (err) {
+      console.error("Error accessing microphone:", err);
+      setError("Could not access the microphone. Please allow permissions.");
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
+  };
 
   const handleProcess = async () => {
     if (!inputText.trim()) return;
@@ -24,7 +71,11 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: inputText }),
+        body: JSON.stringify({ 
+          text: inputText,
+          audioBase64,
+          mimeType 
+        }),
       });
 
       const data = await response.json();
@@ -84,11 +135,36 @@ export default function Home() {
             </p>
             
             <textarea
-              className="w-full flex-grow min-h-[200px] p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
-              placeholder="e.g., 'Me duele mucho el pecho y no puedo respirar. Estoy en la calle Main...'"
+              className="w-full h-40 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-gray-50/50"
+              placeholder="Enter a distressed message in any language. The AI will translate and extract critical triage information."
               value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                setAudioBase64(null);
+                setMimeType(null);
+              }}
             ></textarea>
+
+            {/* Audio Recording Controls */}
+            <div className="mt-2 flex justify-end">
+              {isRecording ? (
+                <button
+                  onClick={stopRecording}
+                  className="flex items-center text-red-600 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  <Square className="h-4 w-4 mr-2 fill-current animate-pulse" />
+                  Stop Recording
+                </button>
+              ) : (
+                <button
+                  onClick={startRecording}
+                  className="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  <Mic className="h-4 w-4 mr-2" />
+                  Record Audio
+                </button>
+              )}
+            </div>
             
             <button
               onClick={handleProcess}

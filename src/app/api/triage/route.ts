@@ -7,18 +7,38 @@ const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export async function POST(request: Request) {
   try {
-    const { text } = await request.json();
+    const { text, audioBase64, mimeType } = await request.json();
 
-    if (!text) {
-      return NextResponse.json({ error: 'Text input is required' }, { status: 400 });
+    if (!text && !audioBase64) {
+      return NextResponse.json({ error: 'Text or audio input is required' }, { status: 400 });
     }
 
-    // We use gemini-3.6-flash as it's fast and perfect for quick data extraction
+    // Prepare contents array for Gemini
+    const contents: any[] = [
+      {
+        text: `You are an expert emergency medical dispatcher assistant. 
+        Your job is to analyze incoming distress messages (which may be text or audio), translate them to English if necessary, 
+        and extract key triage information. Analyze the following message:`
+      }
+    ];
+
+    if (text && text !== "🎤 [Audio message recorded]") {
+      contents.push({ text: `\n\nText Message: "${text}"` });
+    }
+
+    if (audioBase64 && mimeType) {
+      contents.push({
+        inlineData: {
+          data: audioBase64,
+          mimeType: mimeType
+        }
+      });
+    }
+
+    // We use gemini-3.6-flash as it's fast and perfect for quick data extraction and multimodal understanding
     const response = await ai.models.generateContent({
         model: 'gemini-3.6-flash',
-        contents: `You are an expert emergency medical dispatcher assistant. 
-        Your job is to analyze incoming distress messages, translate them to English if necessary, 
-        and extract key triage information. Analyze the following text: "${text}"`,
+        contents: contents,
         config: {
             responseMimeType: "application/json",
             responseSchema: {
