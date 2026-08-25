@@ -77,3 +77,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
                                                                                           in the victim's browser
 ```
 
+**Step by step:**
+1. The victim types a message or records audio; the browser also fetches GPS coordinates and reverse-geocodes them.
+2. The frontend sends `{ text, audioBase64, mimeType, gpsLocation }` to the `/api/triage` Next.js API route.
