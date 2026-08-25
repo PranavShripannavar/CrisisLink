@@ -72,3 +72,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Implement translation text area -->
 
 <!-- Add severity color coding logic -->
+
+<!-- Integrate Gemini API for data extraction -->
