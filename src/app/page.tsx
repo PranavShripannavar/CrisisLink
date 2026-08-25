@@ -323,7 +323,7 @@ export default function Home() {
                           className="flex-1 bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center transition-colors"
                         >
                           <Send className="h-4 w-4 mr-2" />
-                          Ping Local Volunteers
+                          Pinging Local Volunteers...
                         </button>
                         <button 
                           onClick={() => handleDispatch('911')}
