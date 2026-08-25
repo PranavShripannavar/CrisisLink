@@ -86,3 +86,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 <!-- Add error handling for API route -->
 
 <!-- Finalize UI polish and styling -->
+
+<!-- Update README with project details -->
