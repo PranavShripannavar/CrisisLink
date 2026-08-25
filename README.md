@@ -38,3 +38,6 @@ CrisisLink lets anyone send a raw distress message â€” typed in any languag
 | `key_details` | 1â€“2 sentence human-readable summary |
 | `translation` | Direct English translation of the message |
 | `emergency_number` | Correct local emergency number for the region |
+
+### ðŸ“ Intelligent Location & Routing
+- Requests GPS access and **reverse-geocodes** coordinates into a readable street address
