@@ -37,9 +37,9 @@ export async function POST(request: Request) {
       });
     }
 
-    // We use gemini-3.6-flash as it's fast and perfect for quick data extraction and multimodal understanding
+    // We fallback to gemini-2.0-flash as it's highly stable and avoids 503 errors
     const response = await ai.models.generateContent({
-        model: 'gemini-3.6-flash',
+        model: 'gemini-2.0-flash',
         contents: contents,
         config: {
             responseMimeType: "application/json",
