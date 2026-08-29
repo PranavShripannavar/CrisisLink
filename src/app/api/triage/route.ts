@@ -37,9 +37,9 @@ export async function POST(request: Request) {
       });
     }
 
-    // We fallback to gemini-3.6-pro as flash is experiencing high demand and older models are deprecated
+    // Reverting to gemini-3.6-flash per request
     const response = await ai.models.generateContent({
-        model: 'gemini-3.6-pro',
+        model: 'gemini-3.6-flash',
         contents: contents,
         config: {
             responseMimeType: "application/json",
