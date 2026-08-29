@@ -37,9 +37,9 @@ export async function POST(request: Request) {
       });
     }
 
-    // We fallback to gemini-2.0-flash as it's highly stable and avoids 503 errors
+    // We fallback to gemini-3.6-pro as flash is experiencing high demand and older models are deprecated
     const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
+        model: 'gemini-3.6-pro',
         contents: contents,
         config: {
             responseMimeType: "application/json",
